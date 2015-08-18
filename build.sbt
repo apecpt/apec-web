@@ -17,7 +17,7 @@ libraryDependencies ++= Seq(
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 
-pipelineStages := Seq(rjs, digest)
+pipelineStages := Seq(rjs, digest, gzip)
 
 
 // Play provides two styles of routers, one expects its actions to be injected, the
