@@ -10,6 +10,7 @@ libraryDependencies ++= Seq(
   cache,
   ws,
   specs2 % Test,
+    "org.webjars" %% "webjars-play" % "2.4.0-1",
   "org.webjars" % "jquery" % "1.11.1",
   "org.webjars" % "bootstrap" % "3.3.5",
   "org.webjars" % "html5shiv" % "3.7.3"
