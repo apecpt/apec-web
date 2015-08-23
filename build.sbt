@@ -7,6 +7,7 @@ lazy val root = (project in file(".")).enablePlugins(PlayScala)
 scalaVersion := "2.11.6"
 
 libraryDependencies ++= Seq(
+  "pt.org.apec" %% "apec-books-common" % "0.1",
   cache,
   ws,
   specs2 % Test,
