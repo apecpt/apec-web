@@ -1,25 +1,43 @@
-@(message: String)
+@import pt.org.apec.services.books.common._
+@(categories : Seq[Category], authors : Seq[Author], publications : Seq[PublicationInfo])
 
-@main("Welcome to Play") {
+@main("Biblioteca APEC | Início") {
 
     <div class="container">
       <!-- Example row of columns -->
       <div class="row">
         <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+          <h2>Sidebar</h2>
+          <h3>Categories</h3>
+          <ul class="sidebar-nav">
+          @for(c <- categories.sortBy(_.slug)) {
+          <li>@(c.slug)</li>
+          }
+          </ul>
         </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        <div class="col-md-8">
+          <h2>ùltimas Obras</h2>
+          <table>
+          <thead>
+          <tr>
+          <th>Título</th>
+          <th>Autor</th>
+          <th>Categoria</th>
+          <th>Estado</th>
+          </tr>
+          </thead>
+        <tbody>
+       @for(p <- publications.sortBy(_.createdAt.getMillis).reverse.take(25)) {
+        <tr>
+        <td>@p.title</td>
+        <td>@p.authors(0).slug</td>
+        <td>@p.categories(0).slug</td>
+        <td>@p.publicationStatus.map(_.slug)</td>
+        </tr>
+        }
+        </tbody>
+          </table>
        </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
       </div>
 
 }
