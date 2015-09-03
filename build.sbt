@@ -1,6 +1,6 @@
 name := """apec-bib-web"""
 
-version := "1.0-SNAPSHOT"
+version := "0.1"
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
@@ -25,3 +25,5 @@ pipelineStages := Seq(rjs, digest, gzip)
 // Play provides two styles of routers, one expects its actions to be injected, the
 // other, legacy style, accesses its actions statically.
 routesGenerator := InjectedRoutesGenerator
+
+dockerBaseImage := "java:8"
