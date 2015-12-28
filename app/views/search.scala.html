@@ -1,0 +1,38 @@
+@import godiva.core.pagination._
+@import pt.org.apec.services.books.common._
+@( publications: PaginatedResult[PublicationInfo], query: String)
+
+@displayAuthors(p: PublicationInfo) = @{
+	p.authors.map(_.name).reduceLeft(_ + ", " + _)
+}
+
+@main("Biblioteca APEC | Pesquisa") {
+	    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-8">
+        <h2>Pesquisa por @query</h2>
+        
+  @if(publications.totals.get.totalElements > 0) {
+<p>@(publications.totals.get.totalElements) resultados encontrados para @query.</p>
+
+
+@paginationLinks(publications,query)
+<div class="list-group">
+@for(publication <- publications.elements) {
+<a href="#" class="list-group-item">
+<h4>@publication.title</h4 class="list-group-heading">
+<p>Autor: @displayAuthors(publication)</p>
+</a>
+}
+</div>
+@paginationLinks(publications, query)
+} else {
+<p>Nenhum resultado encontrado</p>
+}
+
+</div>
+      </div>
+	}

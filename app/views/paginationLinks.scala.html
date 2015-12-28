@@ -1,0 +1,27 @@
+@import godiva.core.pagination._
+@(result: PaginatedResult[_], query: String)
+
+@if(result.totals.get.totalPages > 1) {
+<nav>
+  <ul class="pagination">
+      <li class="@if(result.page.number == 1){disabled}">
+      <a href="@routes.Application.search(result.page.number - 1, query)" aria-label="Anterior">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+  
+    @for(page <- 1l to result.totals.get.totalPages) {
+    	@if((page) == result.page.number) {
+    <li class="active"><a href="@routes.Application.search(page, query)">@page <span class="sr-only">(atual)</span></a></li>
+    } else {
+    <li><a href="@routes.Application.search(page, query)">@page</a></li>
+    }
+    }
+        <li class="@if(result.page.number == (result.totals.get.totalPages)) {disabled}">
+      <a href="@routes.Application.search(result.page.number + 1, query)" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+}
