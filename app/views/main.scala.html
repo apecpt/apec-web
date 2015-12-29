@@ -1,4 +1,6 @@
-@(title: String)(content: Html)
+        @import b3.inline.fieldConstructor
+
+@(title: String, globalData: models.GlobalData)(content: Html)(implicit messages: play.api.i18n.Messages)
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -58,15 +60,10 @@
   </li>
 
         </ul>
-          <form class="navbar-form navbar-right" role="form">
-            <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Entrar</button>
-          </form>
+        @b3.form(routes.Application.search(page=1, q=""), 'class -> "navbar-form navbar-right", 'role -> "form") {
+        	@b3.search(globalData.searchForm("q"), '_label -> "Termos")
+        	@b3.submit('_class -> "btn btn-primary") {Pesquisar}
+}        	
         </div><!--/.navbar-collapse -->
       </div>
     </nav>
@@ -86,7 +83,7 @@
       <hr>
 
       <footer>
-        <p>&copy; Company 2015</p>
+        <p>&copy; Associação promotora do ensino dos cegos. 2015</p>
       </footer>
     </div> <!-- /container -->
 

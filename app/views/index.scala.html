@@ -1,7 +1,7 @@
 @import pt.org.apec.services.books.common._
-@(categories : Seq[WithPublicationCount[Category]], authors : Seq[Author], publications : Seq[PublicationInfo])
+@(globalData: models.GlobalData, indexData: models.IndexData)(implicit messages: play.api.i18n.Messages)
 
-@main("Biblioteca APEC | Início") {
+@main("Biblioteca APEC | Início", globalData) {
 
     <div class="container">
       <!-- Example row of columns -->
@@ -10,7 +10,7 @@
           <h2>Sidebar</h2>
           <h3>Categories</h3>
           <ul class="sidebar-nav">
-          @for(c <- categories.sortBy(_.element.name)) {
+          @for(c <- indexData.categories.sortBy(_.element.name)) {
           <li>@(c.element.slug) (@c.publicationCount)</li>
           }
           </ul>
@@ -27,7 +27,7 @@
           </tr>
           </thead>
         <tbody>
-       @for(p <- publications.sortBy(_.createdAt.getMillis).reverse.take(25)) {
+       @for(p <- indexData.publications.sortBy(_.createdAt.getMillis).reverse.take(25)) {
         <tr>
         <td>@p.title</td>
         <td>@p.authors(0).name</td>

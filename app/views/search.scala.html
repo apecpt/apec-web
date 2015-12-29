@@ -1,12 +1,12 @@
 @import godiva.core.pagination._
 @import pt.org.apec.services.books.common._
-@( publications: PaginatedResult[PublicationInfo], query: String)
+@( publications: PaginatedResult[PublicationInfo], query: String, globalData: models.GlobalData)(implicit messages: play.api.i18n.Messages)\	
 
 @displayAuthors(p: PublicationInfo) = @{
 	p.authors.map(_.name).reduceLeft(_ + ", " + _)
 }
 
-@main("Biblioteca APEC | Pesquisa") {
+@main("Biblioteca APEC | Pesquisa", globalData) {
 	    <div class="container">
       <!-- Example row of columns -->
       <div class="row">
