@@ -1,5 +1,4 @@
         @import b3.inline.fieldConstructor
-
 @(title: String, globalData: models.GlobalData)(content: Html)(implicit messages: play.api.i18n.Messages)
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -23,9 +22,6 @@
         </style>
         <link rel="stylesheet" href="@routes.Assets.versioned("lib/bootstrap/css/bootstrap-theme.css")">
         <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/main.css")">
-        <!--  dynatable plugin -->
-        <link rel="stylesheet" href="@routes.Assets.versioned("lib/dynatable/jquery.dynatable.css")">
-
         <!--[if lt IE 9]>
             <script src="@routes.Assets.versioned("lib/html5shiv/html5shiv.js")"></script>
         <![endif]-->
@@ -47,7 +43,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-        <li><a href="#">Home</a></li>
+        <li><a href="@routes.Application.index">Início</a></li>
+        <li><a href="@routes.Application.catalog">Catálogo</a></li>
         <li><a href="#">About</a></li>
           <li role="presentation" class="dropdown">
     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">

@@ -28,4 +28,10 @@ class Application @Inject() (booksClient : BooksClient, val messagesApi: Message
     } yield(Ok(views.html.search(publications, query, globalData)))
   }
   
+  def catalog = Action.async { implicit request =>
+    val globalData = GlobalData(None, MainForms.searchForm)
+    for {
+      ((authors, categories), statuses) <- booksClient.getAuthors zip booksClient.getCategories zip booksClient.getPublicationStatuses
+    } yield(Ok(views.html.catalog(CatalogData(categories, authors, statuses), globalData)))
+  }
 }

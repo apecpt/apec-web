@@ -1,3 +1,3 @@
 requirejs ["config"], ->
-	requirejs ["jquery", "dynatable"], ($, dynatable) ->
-		$("#publicationsTable").dynatable()
+	requirejs [ "dynatable","app"], ($, dynatable) ->
+		alert("done")
