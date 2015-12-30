@@ -1,3 +1,4 @@
+@import b3.vertical.fieldConstructor
 @(catalogData: models.CatalogData, globalData:models.GlobalData)(implicit messages: play.api.i18n.Messages)
 
 @main("Catálogo", globalData) {
@@ -15,12 +16,15 @@
 		<li role="presentation">
 	<a href="#authors" role="tab" aria-controls="authors" data-toggle="tab">Autores</a>
 	</li>
+	<li role="presentation">
+	<a href="#search" role="tab" aria-controls="search" data-toggle="tab">Pesquisa</a>
+	</li>
 	</ul>
 	<div class="tab-content">
 	<div role="tabpanel" class="tab-pane active fade in" id="categories">
 	<div class="list-group">
 	@for(c <- catalogData.categories.sortBy(_.element.name)) {
-		<a href="#" class="list-group-item">
+		<a href="@routes.Application.category(c.element.slug)" class="list-group-item">
 		<span class="badge">@c.publicationCount</span>
 		@c.element.name
 		</a>
@@ -40,7 +44,7 @@
       <div class="panel-body">
       <div class="list-group">
       @for(author <- authorsC.sortBy(_.name)) {
-      	<a class="list-group-item" href="#">@author.name</a>
+      	<a class="list-group-item" href="@routes.Application.author(author.slug)">@author.name</a>
       	}
       </div>
       </div>
@@ -50,7 +54,14 @@
 		}
 	</div><!--   panel-group-->
 	</div> <!--  tab-panel  -->
+	<div id="search" role="tabpanel" class="tab-pane fade">
+	
+	@b3.form(routes.Application.search(1, ""))	 {
+		@b3.search(globalData.searchForm("q"), '_label -> "Introduza os termos da sua pesquisa")
+		@b3.submit('_class -> "btn btn-primary") {Pesquisar}
+		}
 	</div>
+	</div> <!--  tab-content -->
 	</div>
 	</div> <!--  collumn -->
 	</div> <!--  row -->

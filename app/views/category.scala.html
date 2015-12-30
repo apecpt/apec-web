@@ -1,0 +1,24 @@
+@import godiva.core.pagination._
+@import pt.org.apec.services.books.common._
+@import models._
+@(listingData: ListingPageData[Category], globalData: GlobalData)(implicit messages:play.api.i18n.Messages)
+
+@routesGenerator(page: Long) = @{routes.Application.category(listingData.element.slug, page)}
+
+@count = @{listingData.publications.totals.get.totalElements}
+@main(listingData.element.name, globalData) {
+	<div class="container">
+	<div class="row">
+	<div class="col-md-8">
+	
+	<h2>Publicações na Categoria @listingData.element.name</h2>
+	@if(count > 0) {
+	<p>Foram encontradas @count publicações na categoria @listingData.element.name</p>
+	@listing(listingData.publications, routesGenerator)
+	} else {
+	<p>Não foram encontrados resultados</p>
+	}
+	</div>
+	</div>
+	</div>
+	}

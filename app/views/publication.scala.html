@@ -1,0 +1,30 @@
+@import pt.org.apec.services.books.common._
+@(publication: PublicationInfo, globalData: models.GlobalData)(implicit messages: play.api.i18n.Messages)
+
+@displayAuthor(author: Author) = {
+<a href="@routes.Application.author(author.slug)">@author.name</a>
+}
+@displayAuthors(p: PublicationInfo) = @{
+p.authors.map(displayAuthor(_)).reduceLeft((a1,a2) => HtmlFormat.fill(scala.collection.immutable.Seq(a1, Html(", "),a2)))
+}
+@main(publication.title, globalData) {
+<div class="container">
+<div class="row">
+<div class="col-md-12">
+<h2>@publication.title</h2>
+<h4>@displayAuthors(publication)</h4>
+@publication.publicationYear.map { y=> <p>Ano: @y</p>}
+@publication.publicationStatus.map { status=>
+<p>Estado da Obra: @status.name</p>
+}
+@publication.notes.map { notes =>
+<h4>Notas</h4>
+<p>@notes</p>
+}
+<p>Data de Adição: @views.DateUtils.dateDay(publication.createdAt)</p>
+<h3>Formatos Disponíveis</h3>
+
+</div>
+</div>
+</div>	
+	}

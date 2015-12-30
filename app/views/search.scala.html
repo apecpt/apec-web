@@ -2,9 +2,7 @@
 @import pt.org.apec.services.books.common._
 @( publications: PaginatedResult[PublicationInfo], query: String, globalData: models.GlobalData)(implicit messages: play.api.i18n.Messages)\	
 
-@displayAuthors(p: PublicationInfo) = @{
-	p.authors.map(_.name).reduceLeft(_ + ", " + _)
-}
+@routesGenerator(page: Long) =@{routes.Application.search(page,query)}
 
 @main("Biblioteca APEC | Pesquisa", globalData) {
 	    <div class="container">
@@ -17,18 +15,8 @@
         
   @if(publications.totals.get.totalElements > 0) {
 <p>@(publications.totals.get.totalElements) resultados encontrados para @query.</p>
+@listing(publications, routesGenerator)
 
-
-@paginationLinks(publications,query)
-<div class="list-group">
-@for(publication <- publications.elements) {
-<a href="#" class="list-group-item">
-<h4>@publication.title</h4 class="list-group-heading">
-<p>Autor: @displayAuthors(publication)</p>
-</a>
-}
-</div>
-@paginationLinks(publications, query)
 } else {
 <p>Nenhum resultado encontrado</p>
 }

@@ -6,37 +6,10 @@
     <div class="container">
       <!-- Example row of columns -->
       <div class="row">
-        <div class="col-md-4">
-          <h2>Sidebar</h2>
-          <h3>Categories</h3>
-          <ul class="sidebar-nav">
-          @for(c <- indexData.categories.sortBy(_.element.name)) {
-          <li>@(c.element.slug) (@c.publicationCount)</li>
-          }
-          </ul>
-        </div>
         <div class="col-md-8">
-          <h2>ùltimas Obras</h2>
-          <table id="publicationsTable">
-          <thead>
-          <tr>
-          <th>Título</th>
-          <th>Autor</th>
-          <th>Categoria</th>
-          <th>Estado</th>
-          </tr>
-          </thead>
-        <tbody>
-       @for(p <- indexData.publications.sortBy(_.createdAt.getMillis).reverse.take(25)) {
-        <tr>
-        <td>@p.title</td>
-        <td>@p.authors(0).name</td>
-        <td>@p.categories(0).name</td>
-        <td>@p.publicationStatus.map(_.slug)</td>
-        </tr>
-        }
-        </tbody>
-          </table>
+        <p>Para já, poderá consultar apenas o nosso catálogo no botão seguinte:
+        
+        <a role="button" class="btn btn-primary" href="@routes.Application.catalog">Catáolog</a></p>
        </div>
       </div>
 
