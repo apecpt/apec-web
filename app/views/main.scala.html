@@ -34,7 +34,7 @@
         <![endif]-->
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
-        <div class="navbar-header">
+        <div class="navbar-header" role="banner">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
@@ -52,20 +52,19 @@
     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button">
       Conta<span class="caret"></span>
     </a>
-    <ul class="dropdown-menu">
-    <li><a href="#">Definições</a></li>
-      <li><a href="#">Sair</a></li>
+    <ul class="dropdown-menu" role="menu">
+    <li role="menuitem"><a href="#">Definições</a></li>
+      <li role="menuitem"><a href="#">Sair</a></li>
     </ul>
   </li>
 
         </ul>
-        <li>
                 @b3.form(routes.Application.search(page=1, q=""), 'class -> "navbar-form navbar-right", 'role -> "form") {
         	@b3.search(globalData.searchForm("q"), '_label -> "Termos")
         	@b3.submit('_class -> "btn btn-primary") {Pesquisar}
 }        	
         
-        </li>
+       
         </div><!--/.navbar-collapse -->
       </div>
     </nav>

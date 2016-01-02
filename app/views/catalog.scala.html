@@ -6,7 +6,7 @@
 	<div class="row">
 	<div class="col-md-8">
 	<h2>Catálogo</h2>
-	
+	<nav>
 	<!--  nav tabs  -->
 	<ul class="nav nav-tabs">
 	<li class="active">
@@ -19,6 +19,7 @@
 	<a href="#search"  data-toggle="tab">Pesquisa</a>
 	</li>
 	</ul>
+	</nav>
 	<div class="tab-content">
 	<div class="tab-pane active fade in" id="categories">
 	<div class="list-group">
@@ -35,8 +36,8 @@
 	@for((c, authorsC) <- catalogData.authors.groupBy(c => views.StringUtils.catalogCharacter(c.name)).toSeq.sortBy(_._1)) {
 		<div class="panel panel-default">
 		<div class="panel-heading" id="author_heading_@c">
-		<h4 class="panel-title">@c
-		        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#author_list_@c" >@c</a>
+		<h4 class="panel-title">
+		        <a role="button" class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#author_list_@c" >@c</a>
 		</h4>
 		</div>
 		    <div id="author_list_@c" class="panel-collapse collapse" aria-labelledby="author_heading_@c">
