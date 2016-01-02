@@ -19,11 +19,14 @@ libraryDependencies ++= Seq(
   filters,
   specs2 % Test,
     "org.webjars" %% "webjars-play" % "2.4.0-1",
-  "org.webjars" % "jquery" % "1.11.1",
+  "org.webjars" % "jquery" % "2.1.4",
   "org.webjars" % "bootstrap" % "3.3.5",
   "org.webjars" % "html5shiv" % "3.7.3",
+  "org.webjars.bower" % "bootstrapaccessibilityplugin" % "1.0.4",
   "org.webjars" % "handlebars" % "4.0.2",
-    "com.adrianhurt" %% "play-bootstrap3" % "0.4.5-P24"
+  "org.webjars" % "requirejs-domready" % "2.0.1-2",
+    "com.adrianhurt" %% "play-bootstrap3" % "0.4.5-P24",
+    "org.scalaz" %% "scalaz-core" % "7.1.5"
 )
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"

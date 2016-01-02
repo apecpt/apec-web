@@ -8,20 +8,19 @@
 	<h2>Catálogo</h2>
 	
 	<!--  nav tabs  -->
-	<div>
-	<ul class="nav nav-tabs" role="tablist">
-	<li role="presentation" class="active">
-	<a href="#categories" role="tab" aria-controls="categories" data-toggle="tab">Categorias</a>
+	<ul class="nav nav-tabs">
+	<li class="active">
+	<a href="#categories"  data-toggle="tab">Categorias</a>
 	</li>
-		<li role="presentation">
-	<a href="#authors" role="tab" aria-controls="authors" data-toggle="tab">Autores</a>
+		<li >
+	<a href="#authors" data-toggle="tab">Autores</a>
 	</li>
-	<li role="presentation">
-	<a href="#search" role="tab" aria-controls="search" data-toggle="tab">Pesquisa</a>
+	<li >
+	<a href="#search"  data-toggle="tab">Pesquisa</a>
 	</li>
 	</ul>
 	<div class="tab-content">
-	<div role="tabpanel" class="tab-pane active fade in" id="categories">
+	<div class="tab-pane active fade in" id="categories">
 	<div class="list-group">
 	@for(c <- catalogData.categories.sortBy(_.element.name)) {
 		<a href="@routes.Application.category(c.element.slug)" class="list-group-item">
@@ -31,16 +30,16 @@
 		}
 	</div> <!--  list-group -->
 	</div> <!--  panel -->
-	<div role="tabpanel" class="tab-pane fade" id="authors">
-	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+	<div class="tab-pane fade" id="authors">
+	<div class="panel-group" id="accordion" >
 	@for((c, authorsC) <- catalogData.authors.groupBy(c => views.StringUtils.catalogCharacter(c.name)).toSeq.sortBy(_._1)) {
 		<div class="panel panel-default">
-		<div class="panel-heading" role="tab" id="author_heading_@c">
+		<div class="panel-heading" id="author_heading_@c">
 		<h4 class="panel-title">@c
-		        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#author_list_@c" aria-expanded="false" aria-controls="author_list_@c">@c</a>
+		        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#author_list_@c" >@c</a>
 		</h4>
 		</div>
-		    <div id="author_list_@c" class="panel-collapse collapse" role="tabpanel" aria-labelledby="author_heading_@c">
+		    <div id="author_list_@c" class="panel-collapse collapse" aria-labelledby="author_heading_@c">
       <div class="panel-body">
       <div class="list-group">
       @for(author <- authorsC.sortBy(_.name)) {
@@ -62,7 +61,6 @@
 		}
 	</div>
 	</div> <!--  tab-content -->
-	</div>
 	</div> <!--  collumn -->
 	</div> <!--  row -->
 	</div> <!-- container -->

@@ -14,6 +14,8 @@
         <link rel="apple-touch-icon" href="@routes.Assets.versioned("images/apple-touch-icon.png")">
 
         <link rel="stylesheet" href="@routes.Assets.versioned("lib/bootstrap/css/bootstrap.css")">
+        <link rel="stylesheet" href="@routes.Assets.versioned("lib/bootstrapaccessibility/plugins/css/bootstrap-accessibility.css")">
+
         <style>
             body {
                 padding-top: 50px;
@@ -46,8 +48,8 @@
         <li><a href="@routes.Application.index">Início</a></li>
         <li><a href="@routes.Application.catalog">Catálogo</a></li>
         <li><a href="#">About</a></li>
-          <li role="presentation" class="dropdown">
-    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+          <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button">
       Conta<span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
@@ -57,10 +59,13 @@
   </li>
 
         </ul>
-        @b3.form(routes.Application.search(page=1, q=""), 'class -> "navbar-form navbar-right", 'role -> "form") {
+        <li>
+                @b3.form(routes.Application.search(page=1, q=""), 'class -> "navbar-form navbar-right", 'role -> "form") {
         	@b3.search(globalData.searchForm("q"), '_label -> "Termos")
         	@b3.submit('_class -> "btn btn-primary") {Pesquisar}
 }        	
+        
+        </li>
         </div><!--/.navbar-collapse -->
       </div>
     </nav>
@@ -78,7 +83,6 @@
 
 
       <hr>
-
       <footer>
         <p>&copy; Associação promotora do ensino dos cegos. 2015</p>
       </footer>
