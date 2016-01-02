@@ -24,8 +24,8 @@
 	<div class="list-group">
 	@for(c <- catalogData.categories.sortBy(_.element.name)) {
 		<a href="@routes.Application.category(c.element.slug)" class="list-group-item">
-		<span class="badge">@c.publicationCount</span>
 		@c.element.name
+		<span class="badge">@c.publicationCount</span>
 		</a>
 		}
 	</div> <!--  list-group -->
