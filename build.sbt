@@ -30,6 +30,7 @@ libraryDependencies ++= Seq(
 )
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
+resolvers += Resolver.bintrayRepo("batista", "maven")
 
 pipelineStages := Seq(rjs, digest, gzip)
 
